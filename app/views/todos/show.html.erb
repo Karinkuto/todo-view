@@ -1,10 +1,7 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @todo %>
 
-<div>
-  <%= link_to "Edit this todo", edit_todo_path(@todo) %> |
-  <%= link_to "Back to todos", todos_path %>
-
-  <%= button_to "Destroy this todo", @todo, method: :delete %>
+<div class="page-actions">
+  <%= link_to "Edit this todo", edit_todo_path(@todo), class: "button button-secondary" %>
+  <%= link_to "Back to todos", todos_path, class: "button button-secondary" %>
+  <%= button_to "Destroy this todo", @todo, method: :delete, class: "button button-destructive" %>
 </div>

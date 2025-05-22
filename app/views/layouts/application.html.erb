@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Todo App</title>
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'application' %>
-  </head>
-  <body>
-    <header>
-      <h1>Todo Application</h1>
-      <p>Visit count: <%= @visit_count %></p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <h1><%= @greeting %>!</h1>
+        <div class="visit-counters">
+          <span class="badge">Total Visits: <%= @visit_count %></span>
+          <span class="badge">Page Visits: <%= @page_visits %></span>
+        </div>
+      </div>
     </header>
 
-    <main>
+    <main class="main-content">
+      <% flash.each do |type, msg| %>
+        <div class="flash-message flash-<%= type %>">
+          <%= msg %>
+        </div>
+      <% end %>
       <%= yield %>
     </main>
 
-    <footer>
-      <p>Last visited: <%= session[:last_visited] %></p>
+    <footer class="app-footer">
+      <p>Last visited: <%= time_ago_in_words(session[:last_visited]) if session[:last_visited].present? %> ago</p>
     </footer>
-  </body>
+  </div>
+</body>
 </html>

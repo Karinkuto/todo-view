@@ -8,3 +8,488 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Global Resets and Base Styles */
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #1a1a1a; /* Darker primary for better contrast */
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #1a1a1a;
+  --ring-rgb: 26, 26, 26; /* RGB version of --ring for box-shadow alpha */
+  --radius: 0.5rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background-color: var(--background);
+  color: var(--foreground);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* App Container - Centered Layout */
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Add some padding on smaller screens */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Styling */
+.app-header {
+  background-color: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* Visit Counters - Badge Styling */
+.visit-counters {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--primary-foreground);
+  background-color: var(--primary);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.badge:hover {
+  background-color: #333; /* Slightly darker on hover */
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  width: 100%;
+  padding: 1rem 0; /* Add some vertical padding if needed */
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Classes to apply animations */
+.animate-fadeInUp {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.animate-fadeOutDown {
+  animation: fadeOutDown 0.3s ease-in forwards;
+}
+
+/* Apply a general fade-in to the main content on load */
+.main-content {
+  flex-grow: 1;
+  width: 100%;
+  padding: 1rem 0; /* Add some vertical padding if needed */
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+
+/* Footer Styling */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: auto; /* Pushes footer to the bottom */
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  border-top: 1px solid var(--border);
+}
+
+/* General Element Styling (Optional, adjust as needed) */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  /* text-decoration: underline; */ /* Default link underline, can be kept or removed based on preference */
+}
+
+/* Remove underline for button-styled links on hover */
+.button:hover,
+a.button:hover {
+  text-decoration: none;
+}
+
+/* Styling for Todo items if you have them, example: */
+.todo-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+/* Basic form styling */
+form div {
+  margin-bottom: 1rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="search"],
+form input[type="tel"],
+form input[type="url"],
+form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem; /* Increased padding */
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--foreground);
+  background-color: var(--background);
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="search"]:focus,
+form input[type="tel"]:focus,
+form input[type="url"]:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--ring-rgb, 26, 26, 26), 0.2); /* Ring effect, ensure --ring-rgb is defined or use a direct rgba value */
+}
+
+form input[type="submit"],
+button {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form input[type="submit"]:hover,
+button:hover {
+  background-color: #333;
+}
+
+/* Page Header for Todos Index */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+/* Todos List Layout (Vertical Stack & Scroll) */
+.todos-grid { /* Renaming to todos-list might be semantically better, but keeping for now */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reduced gap for tighter stacking */
+  max-height: 60vh; /* Adjust as needed, viewport height based */
+  overflow-y: auto;
+  padding-right: 0.5rem; /* Space for scrollbar */
+}
+
+/* Todo Card Styling */
+.todo-card.compact {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem; /* Further reduced padding */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  display: flex; /* Key for horizontal layout */
+  justify-content: space-between; /* Pushes actions to the right */
+  align-items: center; /* Vertically align items in the card */
+  gap: 1rem;
+}
+
+.todo-card-main-content {
+  display: flex;
+  flex-direction: column; /* Stack title/status and description */
+  flex-grow: 1; /* Allows this section to take available space */
+  min-width: 0; /* Important for flex item truncation */
+}
+
+.todo-card-info {
+  /* Container for title/status and description */
+}
+
+.todo-card-title-status {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem; /* Space between title/status and description */
+}
+
+/* .todo-card-header is no longer used in the compact layout, can be removed or kept for other card types */
+
+.todo-title {
+  font-size: 1rem; /* Even smaller title */
+  font-weight: 500;
+  margin: 0;
+  color: var(--card-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if title is too long */
+  flex-shrink: 1;
+}
+
+/* .todo-card-body is no longer used directly in the compact layout */
+
+.todo-description.compact {
+  color: var(--muted-foreground);
+  font-size: 0.8rem; /* Smaller description */
+  line-height: 1.3;
+  margin: 0; /* Remove top/bottom margin */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if description is too long */
+}
+
+.todo-card-actions.compact {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center; /* Align buttons vertically */
+  flex-shrink: 0; /* Prevent actions from shrinking */
+}
+
+/* Status Badge Styling (inside todo card) */
+.status-badge {
+  padding: 0.25em 0.5em; /* Smaller padding */
+  font-size: 0.7rem; /* Smaller font */
+  font-weight: 500;
+  border-radius: calc(var(--radius) - 3px);
+  text-transform: capitalize;
+  white-space: nowrap;
+  flex-shrink: 0; /* Prevent status badge from shrinking */
+  background-color: #f3f4f6; /* Light gray background */
+  color: #4b5563; /* Dark gray text */
+}
+
+/* Specific Status Colors (customize as needed) */
+.status-badge.status-pending,
+.status-badge.status-in-progress,
+.status-badge.status-completed {
+  background-color: #f3f4f6; /* Light gray background */
+  color: #4b5563; /* Dark gray text */
+}
+
+.status-badge.status-default {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+/* Button Styling Improvements */
+.button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.button-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.button-primary:hover {
+  background-color: #333; /* Darken primary */
+  border-color: #333;
+}
+
+.button-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border-color: var(--border);
+}
+
+.button-secondary:hover {
+  background-color: #e4e4e7; /* Darken secondary/border */
+  border-color: #d1d1d6;
+}
+
+/* Smaller button variant */
+.button.button-small {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.button-destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+  border-color: var(--destructive);
+}
+
+.button-destructive:hover {
+  background-color: #dc2626; /* Darken destructive */
+  border-color: #dc2626;
+}
+
+/* Header Session Badge Refinements */
+.app-header .badge {
+  padding: 0.4em 0.8em; /* Slightly larger padding */
+  font-size: 0.85rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Empty state for todos */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+/* Flash notice styling */
+.flash-notice {
+  background-color: #d1fae5; /* Light green */
+  color: #065f46; /* Dark green */
+  padding: 0.75rem 1rem;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Flash Messages */
+.flash-message {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.flash-message.flash-notice {
+  color: #0f5132; /* Dark green text */
+  background-color: #d1e7dd; /* Light green background */
+  border-color: #badbcc; /* Green border */
+}
+
+.flash-message.flash-notice::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%230f5132'%3E%3Cpath fill-rule='evenodd' d='M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 0.5em;
+}
+
+.flash-message.flash-alert {
+  color: #842029; /* Dark red text */
+  background-color: #f8d7da; /* Light red background */
+  border-color: #f5c2c7; /* Red border */
+}
+
+.flash-message.flash-alert::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23842029'%3E%3Cpath fill-rule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 0.5em;
+}
+
+/* Page Actions Styling (for button groups on show/edit pages) */
+.page-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}

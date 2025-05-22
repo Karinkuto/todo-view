@@ -1,17 +1,17 @@
-<div id="<%= dom_id todo %>">
-  <p>
-    <strong>Title:</strong>
-    <%= todo.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= todo.description %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= todo.status %>
-  </p>
-
+<div id="<%= dom_id todo %>" class="todo-card compact animate-fadeInUp">
+  <div class="todo-card-main-content">
+    <div class="todo-card-info">
+      <div class="todo-card-title-status">
+        <h3 class="todo-title"><%= todo.title %></h3>
+        <span class="status-badge status-<%= todo.status.parameterize.underscore rescue 'default' %>"><%= todo.status %></span>
+      </div>
+      <% if todo.description.present? %>
+        <p class="todo-description compact"><%= todo.description %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="todo-card-actions compact">
+    <%= link_to "Show", todo, class: "button button-small button-secondary" %>
+    <%= link_to "Edit", edit_todo_path(todo), class: "button button-small button-secondary" %>
+  </div>
 </div>

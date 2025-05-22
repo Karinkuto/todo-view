@@ -3,11 +3,6 @@ class TodosController < ApplicationController
 
   # GET /todos or /todos.json
   def index
-    session[:last_visited] = Time.current
-    session[:visit_count] ||= 0
-    session[:visit_count] += 1
-    @visit_count = session[:visit_count]
-
     @todos = Todo.all
   end
 

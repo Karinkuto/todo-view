@@ -6,7 +6,7 @@
 
 <br>
 
-<div>
-  <%= link_to "Show this todo", @todo %> |
-  <%= link_to "Back to todos", todos_path %>
+<div class="page-actions">
+  <%= link_to "Show this todo", @todo, class: "button button-secondary" %>
+  <%= link_to "Back to todos", todos_path, class: "button button-secondary" %>
 </div>
