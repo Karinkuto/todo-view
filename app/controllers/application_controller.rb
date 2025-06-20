@@ -16,11 +16,11 @@ class ApplicationController < ActionController::Base
   def set_greeting
     current_hour = Time.current.hour
     @greeting = case current_hour
-                when 5..11 then "Good Morning"
-                when 12..16 then "Good Afternoon"
-                when 17..20 then "Good Evening"
-                else "Good Night"
-                end
+    when 5..11 then "Good Morning"
+    when 12..16 then "Good Afternoon"
+    when 17..20 then "Good Evening"
+    else "Good Night"
+    end
   end
   # For this part to actually work we would either need a user model or client side tracking but it is out of scope based on the requirements given lol
 end
