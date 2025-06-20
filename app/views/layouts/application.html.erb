@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-controller="theme" data-theme-dark-class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -14,9 +15,18 @@
     <header class="app-header">
       <div class="header-content">
         <h1><%= @greeting %>!</h1>
-        <div class="visit-counters">
-          <span class="badge">Total Visits: <%= @visit_count %></span>
-          <span class="badge">Page Visits: <%= @page_visits %></span>
+        <div class="header-actions">
+          <div class="visit-counters">
+            <span class="badge">Total Visits: <%= @visit_count %></span>
+            <span class="badge">Page Visits: <%= @page_visits %></span>
+          </div>
+          <button type="button" 
+                  class="theme-toggle" 
+                  data-action="click->theme#toggle"
+                  data-theme-target="toggle"
+                  aria-label="Toggle dark mode">
+            <i class="fas fa-moon" data-theme-target="icon"></i>
+          </button>
         </div>
       </div>
     </header>
